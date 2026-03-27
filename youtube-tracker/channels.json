@@ -1,0 +1,14 @@
+{
+  "channels": [
+    {
+      "name": "Cihat E. Çiçek",
+      "channel_id": "UCHExW8VqaE0a3W0kwSe_BXg",
+      "url": "https://www.youtube.com/@cihatecicek",
+      "category": "Finans & Yatırım"
+    }
+  ],
+  "settings": {
+    "max_videos_per_run": 5,
+    "lookback_hours": 25
+  }
+}

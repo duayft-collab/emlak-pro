@@ -1,0 +1,41 @@
+name: YouTube Tracker
+
+on:
+  schedule:
+    - cron: '0 7 * * *'    # 10:00 Türkiye
+    - cron: '0 15 * * *'   # 18:00 Türkiye
+  workflow_dispatch:
+
+jobs:
+  track:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Bağımlılıklar
+        run: pip install youtube-transcript-api --quiet
+
+      - name: Tracker çalıştır
+        env:
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+          OPENAI_API_KEY:  ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          cd youtube-tracker
+          python3 scripts/tracker.py
+
+      - name: Commit & Push
+        run: |
+          git config user.name  "YouTube Tracker Bot"
+          git config user.email "bot@noreply.github.com"
+          git add youtube-tracker/data/summaries.json youtube-tracker/data/seen.json
+          git diff --staged --quiet || git commit -m "data: YouTube özetleri güncellendi $(date -u +%Y-%m-%dT%H:%M)"
+          git push
