@@ -1,0 +1,87 @@
+<!--
+  Strategy Hub — pages/realestate.html
+  Gayrimenkul Analizi sayfası
+  Versiyon: 5.1.0 | 2026-03-26
+-->
+<div class="page-content">
+  <div class="ph"><h2>Gayrimenkul Analizi</h2><p>Şehir verileri + kişisel portföy</p></div>
+
+  <div class="sg">
+    <div class="sc"><div class="scl">Konut End. (Ay)</div><div class="scv">%4.2</div><div><span class="bdg up">Artıyor</span></div></div>
+    <div class="sc"><div class="scl">Ort. m² (TL)</div><div class="scv">48,400</div><div><span class="bdg up">+%62 YoY</span></div></div>
+    <div class="sc"><div class="scl">Kira Getirisi</div><div class="scv">%6.8</div><div><span class="bdg up">İyi</span></div></div>
+    <div class="sc"><div class="scl">Aylık Satış</div><div class="scv">98.4K</div><div><span class="bdg up">+%12.3</span></div></div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
+    <div class="card">
+      <div class="card-h"><div class="card-icon" style="background:rgba(217,119,6,.08)">🏘</div><h3>Şehir Fiyatları</h3></div>
+      <table class="dt">
+        <thead><tr><th>Şehir</th><th>m² (TL)</th><th>Değişim</th><th>Kira Get.</th></tr></thead>
+        <tbody>
+          <tr><td class="s">İstanbul Avr.</td><td>62,400</td><td><span class="bdg up">+4.8%</span></td><td>%5.2</td></tr>
+          <tr><td class="s">İstanbul Asya</td><td>48,200</td><td><span class="bdg up">+5.1%</span></td><td>%6.4</td></tr>
+          <tr><td class="s">Ankara</td><td>32,800</td><td><span class="bdg up">+3.9%</span></td><td>%7.1</td></tr>
+          <tr><td class="s">İzmir</td><td>44,600</td><td><span class="bdg up">+4.4%</span></td><td>%6.0</td></tr>
+          <tr><td class="s">Antalya</td><td>38,200</td><td><span class="bdg up">+5.8%</span></td><td>%8.2</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card">
+      <div class="card-h"><div class="card-icon" style="background:rgba(37,99,235,.08)">🏗</div><h3>Ticari Piyasa</h3></div>
+      <div class="mm"><span class="mml">Lojistik Depo</span><span class="mmv gd">52 TL · %94</span></div>
+      <div class="mm"><span class="mml">Ofis A Sınıfı</span><span class="mmv wn">480 TL · %78</span></div>
+      <div class="mm"><span class="mml">AVM Prime</span><span class="mmv gd">820 TL · %89</span></div>
+      <div class="mm"><span class="mml">Sanayi Parseli</span><span class="mmv gd">38 TL · %97</span></div>
+      <div class="ab" style="background:var(--bg3);border-radius:10px;padding:12px 14px;border:1px solid var(--sidebar-border);margin-top:10px">
+        <div style="font-size:9px;font-weight:700;color:var(--text3);letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px">Tavsiye</div>
+        <p style="font-size:11px;color:var(--text2);line-height:1.6">OSB yakınları lojistik depo: en yüksek doluluk + getiri kombinasyonu.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Kişisel Portföy — realestate.module.js yönetir -->
+  <div class="card">
+    <div class="card-h"><div class="card-icon" style="background:rgba(5,150,105,.08)">📌</div><h3>✎ Kişisel Portföyüm</h3></div>
+    <div id="re-list" style="margin-bottom:10px"></div>
+    <div class="ed-wrap">
+      <div class="ed-title">+ Yeni Mülk</div>
+      <div class="ed-grid">
+        <span class="ed-lbl">Tanım</span><input class="ed-inp" id="re-name" placeholder="Kadıköy 2+1 daire">
+        <span class="ed-lbl">Değer (TL)</span><input class="ed-inp" id="re-val" placeholder="2,400,000">
+        <span class="ed-lbl">Kira (TL/ay)</span><input class="ed-inp" id="re-rent" placeholder="14,000">
+        <span class="ed-lbl">Tür</span>
+        <select class="ed-sel" id="re-type">
+          <option>Konut</option><option>Lojistik Depo</option>
+          <option>Ofis</option><option>Arsa</option><option>Dükkan</option>
+        </select>
+      </div>
+      <button class="ed-btn" onclick="REModule.addRE({
+        name: document.getElementById('re-name').value,
+        val:  document.getElementById('re-val').value,
+        rent: document.getElementById('re-rent').value,
+        type: document.getElementById('re-type').value
+      }); ['re-name','re-val','re-rent'].forEach(id=>document.getElementById(id).value='')">Portföye Ekle</button>
+    </div>
+  </div>
+
+  <!-- Portföy Performans Grafiği -->
+  <div class="card" style="margin-top:16px">
+    <div class="card-h">
+      <div class="card-icon" style="background:rgba(37,99,235,.08)">📈</div>
+      <h3>Portföy Büyüme Grafiği</h3>
+    </div>
+    <div class="chart-empty hidden" style="font-size:11px;color:var(--text3);padding:20px;text-align:center">
+      Veri henüz yok — mülk ve pipeline ekledikçe grafik oluşur.
+    </div>
+    <div style="position:relative;height:200px">
+      <canvas id="portfolio-chart"></canvas>
+    </div>
+  </div>
+</div>
+
+<script type="module" data-module="src/modules/realestate.module.js">
+import { REModule } from '../src/modules/realestate.module.js';
+window.REModule = REModule;
+REModule.init();
+</script>

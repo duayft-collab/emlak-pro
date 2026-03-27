@@ -1,0 +1,50 @@
+<!--
+  Strategy Hub — pages/kids.html
+  Çocuk Gelişimi sayfası
+  Versiyon: 5.1.0 | 2026-03-26
+-->
+<div class="page-content">
+  <div class="ph"><h2>Çocuk Gelişimi</h2><p>Haftalık program ve gelişim takibi</p></div>
+
+  <div class="sg">
+    <div class="sc"><div class="scl">Aktivite/Hafta</div><div class="scv" id="kids-cnt">0</div></div>
+    <div class="sc"><div class="scl">Okuma Hedefi</div><div class="scv">%85</div><div><span class="bdg up">40/47 sf</span></div></div>
+    <div class="sc"><div class="scl">Kodlama</div><div class="scv">3.5 saat</div></div>
+    <div class="sc"><div class="scl">Fiziksel</div><div class="scv">5/7 gün</div></div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+    <div class="card">
+      <div class="card-h"><div class="card-icon" style="background:rgba(37,99,235,.08)">📅</div><h3>Haftalık Program</h3></div>
+      <div id="kids-list" style="margin-bottom:8px"></div>
+      <div class="ed-wrap">
+        <div class="ed-title">+ Aktivite Ekle</div>
+        <div class="ed-grid">
+          <span class="ed-lbl">Aktivite</span><input class="ed-inp" id="kids-act" placeholder="Yüzme, satranç…">
+          <span class="ed-lbl">Gün &amp; Saat</span><input class="ed-inp" id="kids-day" placeholder="Cumartesi 10:00">
+          <span class="ed-lbl">Emoji</span><input class="ed-inp" id="kids-emoji" placeholder="⭐">
+        </div>
+        <button class="ed-btn" onclick="KidsModule.addActivity({
+          act:   document.getElementById('kids-act').value,
+          day:   document.getElementById('kids-day').value,
+          emoji: document.getElementById('kids-emoji').value
+        }); ['kids-act','kids-day','kids-emoji'].forEach(id=>document.getElementById(id).value='')">Ekle</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-h"><div class="card-icon" style="background:rgba(5,150,105,.08)">🌱</div><h3>Gelişim Alanları</h3></div>
+      <div id="kids-progress"></div>
+      <div class="ab" style="background:var(--bg3);border-radius:10px;padding:12px 14px;border:1px solid var(--sidebar-border);margin-top:10px">
+        <div style="font-size:9px;font-weight:700;color:var(--text3);letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px">Bu Haftanın Önerisi</div>
+        <p style="font-size:11px;color:var(--text2);line-height:1.6">Finansal okuryazarlık: harçlık yönetimi ile basit bütçe. Kumbara → banka → yatırım sırasıyla anlatılabilir.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="module" data-module="src/modules/kids.module.js">
+import { KidsModule } from '../src/modules/kids.module.js';
+window.KidsModule = KidsModule;
+KidsModule.init();
+</script>

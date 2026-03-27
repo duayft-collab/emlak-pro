@@ -1,0 +1,23 @@
+<!--
+  Strategy Hub — pages/weather.html
+  Hava Durumu & Haberler sayfası
+  Versiyon: 5.1.0 | 2026-03-26
+-->
+<div class="page-content">
+  <div class="ph"><h2>Hava &amp; Haberler</h2><p>Canlı hava + ekonomi haberleri</p></div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+    <div class="card">
+      <div class="card-h"><div class="card-icon" style="background:rgba(37,99,235,.08)">🌤</div><h3>Şehir Hava Durumu</h3><span class="badge-live">CANLI</span></div>
+      <div id="weather-full"><div style="font-size:11px;color:var(--text3)"><span class="sp"></span> Yükleniyor…</div></div>
+    </div>
+    <div class="card">
+      <div class="card-h"><div class="card-icon" style="background:rgba(217,119,6,.08)">📰</div><h3>Son Ekonomi Haberleri</h3></div>
+      <div id="news-feed"><div style="font-size:11px;color:var(--text3)"><span class="sp"></span> Yükleniyor…</div></div>
+    </div>
+  </div>
+</div>
+
+<script type="module" data-module="src/modules/weather.module.js">
+import { WeatherModule } from '../src/modules/weather.module.js';
+WeatherModule.init();
+</script>

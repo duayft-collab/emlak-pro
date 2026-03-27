@@ -1,0 +1,56 @@
+<!--
+  Strategy Hub — pages/bookmarks.html
+  Faydalı web siteleri — 15 hazır + kullanıcı ekleme
+  Versiyon: 5.4.0 | 2026-03-27
+-->
+<div class="page-content">
+  <div class="ph">
+    <h2>Faydalı Web Siteleri</h2>
+    <p>15 hazır kaynak + kendi sitelerini ekle</p>
+  </div>
+
+  <!-- Filtreler -->
+  <div id="bookmark-filters" style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px"></div>
+
+  <!-- Site Grid -->
+  <div id="bookmarks-grid"></div>
+
+  <!-- Ekle -->
+  <div class="card">
+    <div class="card-h">
+      <div class="card-icon" style="background:rgba(37,99,235,.08)">➕</div>
+      <h3>Site Ekle</h3>
+    </div>
+    <div class="ed-grid">
+      <span class="ed-lbl">Başlık</span>
+      <input class="ed-inp" id="bm-title" placeholder="Site adı">
+      <span class="ed-lbl">URL</span>
+      <input class="ed-inp" id="bm-url" placeholder="https://">
+      <span class="ed-lbl">Açıklama</span>
+      <input class="ed-inp" id="bm-desc" placeholder="Kısa açıklama">
+      <span class="ed-lbl">Kategori</span>
+      <select class="ed-sel" id="bm-cat">
+        <option>Piyasa & Finans</option><option>İhracat & Ticaret</option>
+        <option>Afrika Pazarı</option><option>Lojistik</option>
+        <option>Haberler</option><option>Diğer</option>
+      </select>
+      <span class="ed-lbl">İkon</span>
+      <input class="ed-inp" id="bm-icon" placeholder="🔗">
+    </div>
+    <button class="btn-primary" style="width:100%;margin-top:10px"
+      onclick="BookmarksModule.addBookmark({
+        title: document.getElementById('bm-title').value,
+        url:   document.getElementById('bm-url').value,
+        desc:  document.getElementById('bm-desc').value,
+        cat:   document.getElementById('bm-cat').value,
+        icon:  document.getElementById('bm-icon').value
+      }); ['bm-title','bm-url','bm-desc','bm-icon'].forEach(id=>{const e=document.getElementById(id);if(e)e.value=''})">
+      Ekle
+    </button>
+  </div>
+</div>
+
+<script type="module" data-module="src/modules/bookmarks.module.js"></script>
+<script type="module">
+  setTimeout(() => { window.BookmarksModule?.init(); }, 100);
+</script>

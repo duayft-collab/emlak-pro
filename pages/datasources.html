@@ -1,0 +1,170 @@
+<!--
+  Strategy Hub — pages/datasources.html
+  7 Kritik Veri Kaynağı + Alarm Sistemi + Notlar
+  Versiyon: 5.4.0 | 2026-03-27
+-->
+<div class="page-content">
+  <div class="ph">
+    <h2>Veri Kaynakları & Alarmlar</h2>
+    <p>TCMB · BIST · TÜİK · IMF · World Bank · Freightos · Trading Economics</p>
+  </div>
+
+  <!-- 7 Veri Kaynağı Grid -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px">
+
+    <div class="card">
+      <div class="card-h">
+        <div class="card-icon" style="background:rgba(220,38,38,.08)">🏦</div>
+        <h3>TCMB — Resmi Kurlar</h3>
+        <span class="badge-live">CANLI</span>
+      </div>
+      <div id="ds-tcmb"><div style="font-size:11px;color:var(--text3)"><span class="sp"></span> Yükleniyor…</div></div>
+    </div>
+
+    <div class="card">
+      <div class="card-h">
+        <div class="card-icon" style="background:rgba(37,99,235,.08)">📈</div>
+        <h3>BIST 100</h3>
+        <span class="badge-live">CANLI</span>
+      </div>
+      <div id="ds-bist"><div style="font-size:11px;color:var(--text3)"><span class="sp"></span> Yükleniyor…</div></div>
+    </div>
+
+    <div class="card">
+      <div class="card-h">
+        <div class="card-icon" style="background:rgba(5,150,105,.08)">📊</div>
+        <h3>TÜİK — Makro Göstergeler</h3>
+      </div>
+      <div id="ds-tuik"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-h">
+        <div class="card-icon" style="background:rgba(124,58,237,.08)">🌐</div>
+        <h3>IMF — Büyüme Tahminleri</h3>
+      </div>
+      <div id="ds-imf"><div style="font-size:11px;color:var(--text3)"><span class="sp"></span> Yükleniyor…</div></div>
+    </div>
+
+    <div class="card">
+      <div class="card-h">
+        <div class="card-icon" style="background:rgba(217,119,6,.08)">🌍</div>
+        <h3>World Bank — Afrika GDP</h3>
+      </div>
+      <div id="ds-worldbank"><div style="font-size:11px;color:var(--text3)"><span class="sp"></span> Yükleniyor…</div></div>
+    </div>
+
+    <div class="card">
+      <div class="card-h">
+        <div class="card-icon" style="background:rgba(37,99,235,.08)">⚓</div>
+        <h3>Freightos — Navlun Endeksleri</h3>
+      </div>
+      <div id="ds-freightos"></div>
+    </div>
+
+  </div>
+
+  <!-- 7. Kaynak tam genişlik -->
+  <div class="card" style="margin-bottom:16px">
+    <div class="card-h">
+      <div class="card-icon" style="background:rgba(220,38,38,.08)">💹</div>
+      <h3>Trading Economics — Küresel Makro</h3>
+    </div>
+    <div id="ds-trading" style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px"></div>
+  </div>
+
+  <!-- Alarm Sistemi -->
+  <div class="card" style="margin-bottom:16px">
+    <div class="card-h">
+      <div class="card-icon" style="background:rgba(220,38,38,.08)">🔔</div>
+      <h3>Fiyat Alarm Sistemi</h3>
+    </div>
+    <div id="alarm-list" style="margin-bottom:12px"></div>
+    <div class="ed-wrap">
+      <div class="ed-title">+ Yeni Alarm</div>
+      <div class="ed-grid">
+        <span class="ed-lbl">Varlık</span>
+        <select class="ed-sel" id="alarm-target">
+          <option value="usd_try">USD/TRY</option>
+          <option value="eur_try">EUR/TRY</option>
+          <option value="gold">Ons Altın</option>
+          <option value="btc">Bitcoin</option>
+          <option value="bist100">BIST 100</option>
+          <option value="brent">Brent Petrol</option>
+          <option value="xof">USD/XOF</option>
+          <option value="ngn">USD/NGN</option>
+          <option value="kes">USD/KES</option>
+          <option value="zar">USD/ZAR</option>
+        </select>
+        <span class="ed-lbl">Koşul</span>
+        <select class="ed-sel" id="alarm-condition">
+          <option value="above">▲ Üstüne çıkınca</option>
+          <option value="below">▼ Altına düşünce</option>
+        </select>
+        <span class="ed-lbl">Eşik Değer</span>
+        <input class="ed-inp" id="alarm-threshold" type="number" placeholder="45.00" step="0.01">
+        <span class="ed-lbl">Tür</span>
+        <select class="ed-sel" id="alarm-oneshot">
+          <option value="1">Tek seferlik</option>
+          <option value="0">Her seferinde</option>
+        </select>
+      </div>
+      <button class="btn-primary" style="width:100%" onclick="AlarmModule.addAlarm({
+        target:    document.getElementById('alarm-target').value,
+        condition: document.getElementById('alarm-condition').value,
+        threshold: document.getElementById('alarm-threshold').value,
+        oneShot:   document.getElementById('alarm-oneshot').value === '1'
+      }); document.getElementById('alarm-threshold').value=''">Alarm Kur</button>
+    </div>
+  </div>
+
+  <!-- Notlar & Hatırlatıcılar -->
+  <div class="card">
+    <div class="card-h">
+      <div class="card-icon" style="background:rgba(124,58,237,.08)">📝</div>
+      <h3>Notlar & Hatırlatıcılar</h3>
+    </div>
+    <div id="notes-list" style="margin-bottom:12px"></div>
+    <div class="ed-wrap">
+      <div class="ed-title">+ Yeni Not</div>
+      <div class="ed-grid">
+        <span class="ed-lbl">Başlık</span>
+        <input class="ed-inp" id="note-title" placeholder="Nijerya — Akreditif hatırlatma">
+        <span class="ed-lbl">Not</span>
+        <input class="ed-inp" id="note-body" placeholder="Detay açıklama">
+        <span class="ed-lbl">Etiket</span>
+        <select class="ed-sel" id="note-tag">
+          <option>Genel</option><option>Nijerya</option><option>Kenya</option>
+          <option>Güney Afrika</option><option>Gana</option><option>Mısır</option>
+          <option>Lojistik</option><option>Finans</option><option>Hukuk</option>
+        </select>
+        <span class="ed-lbl">Öncelik</span>
+        <select class="ed-sel" id="note-priority">
+          <option value="high">🔴 Kritik</option>
+          <option value="medium">🟡 Orta</option>
+          <option value="low">🟢 Düşük</option>
+        </select>
+        <span class="ed-lbl">Hatırlatma</span>
+        <input class="ed-inp" id="note-reminder" type="date">
+      </div>
+      <button class="btn-primary" style="width:100%" onclick="NotesModule.addNote({
+        title:    document.getElementById('note-title').value,
+        body:     document.getElementById('note-body').value,
+        tag:      document.getElementById('note-tag').value,
+        priority: document.getElementById('note-priority').value,
+        reminder: document.getElementById('note-reminder').value
+      }); ['note-title','note-body','note-reminder'].forEach(id=>{const e=document.getElementById(id);if(e)e.value=''})">Not Ekle</button>
+    </div>
+  </div>
+</div>
+
+<script type="module" data-module="src/modules/data-sources.module.js"></script>
+<script type="module" data-module="src/modules/alarm.module.js"></script>
+<script type="module" data-module="src/modules/notes.module.js"></script>
+<script type="module">
+  setTimeout(() => {
+    window.DataSourcesModule?.init();
+    window.AlarmModule?.init();
+    window.NotesModule?.init();
+  }, 100);
+</script>

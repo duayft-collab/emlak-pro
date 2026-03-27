@@ -1,0 +1,78 @@
+<!--
+  Strategy Hub — pages/growth.html
+  Kişisel Gelişim sayfası
+  Versiyon: 5.1.0 | 2026-03-26
+-->
+<div class="page-content">
+  <div class="ph"><h2>Kişisel Gelişim</h2><p>Okuma, eğitim ve hedef takibi</p></div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
+
+    <div class="card">
+      <div class="card-h"><div class="card-icon" style="background:rgba(217,119,6,.08)">📚</div><h3>Kitap Listesi</h3></div>
+      <div id="books-list" style="margin-bottom:8px"></div>
+      <div class="ed-wrap">
+        <div class="ed-title">+ Kitap Ekle</div>
+        <div class="ed-grid">
+          <span class="ed-lbl">Kitap</span><input class="ed-inp" id="book-title" placeholder="Kitap adı">
+          <span class="ed-lbl">Yazar</span><input class="ed-inp" id="book-author" placeholder="Yazar">
+          <span class="ed-lbl">İlerleme %</span><input class="ed-inp" id="book-pct" type="number" min="0" max="100" placeholder="0">
+        </div>
+        <button class="ed-btn" onclick="GrowthModule.addBook({
+          title:  document.getElementById('book-title').value,
+          author: document.getElementById('book-author').value,
+          pct:    document.getElementById('book-pct').value
+        }); ['book-title','book-author','book-pct'].forEach(id=>document.getElementById(id).value='')">Ekle</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-h"><div class="card-icon" style="background:rgba(5,150,105,.08)">🎯</div><h3>Hedeflerim</h3></div>
+      <div id="goals-list" style="margin-bottom:8px"></div>
+      <div class="ed-wrap">
+        <div class="ed-title">+ Hedef Ekle</div>
+        <div class="ed-grid">
+          <span class="ed-lbl">Hedef</span><input class="ed-inp" id="goal-name" placeholder="Hedef tanımı">
+          <span class="ed-lbl">Mevcut</span><input class="ed-inp" id="goal-cur" type="number" placeholder="0">
+          <span class="ed-lbl">Toplam</span><input class="ed-inp" id="goal-tot" type="number" placeholder="10">
+        </div>
+        <button class="ed-btn" onclick="GrowthModule.addGoal({
+          name: document.getElementById('goal-name').value,
+          cur:  document.getElementById('goal-cur').value,
+          tot:  document.getElementById('goal-tot').value
+        }); ['goal-name','goal-cur','goal-tot'].forEach(id=>document.getElementById(id).value='')">Ekle</button>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="card" style="margin-bottom:16px">
+    <div class="card-h"><div class="card-icon" style="background:rgba(37,99,235,.08)">🎓</div><h3>Eğitim &amp; Podcast</h3></div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px">
+      <div style="display:flex;align-items:flex-start;gap:8px">
+        <div style="width:6px;height:6px;border-radius:50%;background:var(--accent);margin-top:4px;flex-shrink:0"></div>
+        <div><div style="font-size:9px;color:var(--text3);font-weight:700">EĞİTİM · HBR</div><div style="font-size:11px;font-weight:600;color:var(--text)">Stratejik AI Yönetimi</div><div style="font-size:10px;color:var(--text3)">Hafta 3/6</div></div>
+      </div>
+      <div style="display:flex;align-items:flex-start;gap:8px">
+        <div style="width:6px;height:6px;border-radius:50%;background:var(--green);margin-top:4px;flex-shrink:0"></div>
+        <div><div style="font-size:9px;color:var(--text3);font-weight:700">PODCAST</div><div style="font-size:11px;font-weight:600;color:var(--text)">Master of Scale</div><div style="font-size:10px;color:var(--text3)">Reid Hoffman</div></div>
+      </div>
+      <div style="display:flex;align-items:flex-start;gap:8px">
+        <div style="width:6px;height:6px;border-radius:50%;background:var(--gold);margin-top:4px;flex-shrink:0"></div>
+        <div><div style="font-size:9px;color:var(--text3);font-weight:700">PODCAST</div><div style="font-size:11px;font-weight:600;color:var(--text)">Acquired: NVIDIA</div><div style="font-size:10px;color:var(--text3)">3.5 saat · Sırada</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-h"><div class="card-icon" style="background:rgba(124,58,237,.08)">🔑</div><h3>Yatırımcı Görüşleri</h3></div>
+    <div style="padding:12px 0;border-bottom:1px solid var(--sidebar-border)"><p style="font-style:italic;font-size:12px;color:var(--text);line-height:1.7">"Nakit çöp değildir ama doğru yönetilmeyen nakit erir. Portföyünüzü korele olmayan varlıklarla çeşitlendirin."</p><span style="font-size:9px;font-weight:700;color:var(--text3);letter-spacing:.08em">— Ray Dalio</span></div>
+    <div style="padding:12px 0;border-bottom:1px solid var(--sidebar-border)"><p style="font-style:italic;font-size:12px;color:var(--text);line-height:1.7">"Piyasa katılımcıları genellikle rasyonel değildir. Fırsatlar bu rasyonel olmayan korkular içerisindedir."</p><span style="font-size:9px;font-weight:700;color:var(--text3);letter-spacing:.08em">— Warren Buffett</span></div>
+    <div style="padding:12px 0"><p style="font-style:italic;font-size:12px;color:var(--text);line-height:1.7">"Enflasyon döneminde borçla varlık almak zenginleşmenin anahtarıdır. İyi borcu kullanmayı öğrenin."</p><span style="font-size:9px;font-weight:700;color:var(--text3);letter-spacing:.08em">— Robert Kiyosaki</span></div>
+  </div>
+</div>
+
+<script type="module" data-module="src/modules/growth.module.js">
+import { GrowthModule } from '../src/modules/growth.module.js';
+window.GrowthModule = GrowthModule;
+GrowthModule.init();
+</script>

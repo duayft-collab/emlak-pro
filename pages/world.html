@@ -1,0 +1,58 @@
+<!--
+  Strategy Hub — pages/world.html
+  Dünya Ekonomisi sayfası
+  Versiyon: 5.1.0 | 2026-03-26
+-->
+<div class="page-content">
+  <div class="ph"><h2>Dünya Ekonomisi</h2><p>Canlı borsa, emtia ve küresel göstergeler</p></div>
+
+  <div class="sg">
+    <div class="sc"><div class="scl">S&amp;P 500</div><div class="scv" id="sp500-v">—</div><div class="scs" id="sp500-c"></div></div>
+    <div class="sc"><div class="scl">NASDAQ</div><div class="scv" id="nasdaq-v">—</div><div class="scs" id="nasdaq-c"></div></div>
+    <div class="sc"><div class="scl">BIST 100</div><div class="scv" id="bist-v">—</div><div class="scs" id="bist-c"></div></div>
+    <div class="sc"><div class="scl">EUR / USD</div><div class="scv" id="eurusd-w">—</div><div class="scs" id="eurusd-wc"></div></div>
+  </div>
+
+  <div class="two-col" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
+    <div class="card">
+      <div class="card-h"><div class="card-icon" style="background:rgba(37,99,235,.08)">📈</div><h3>Canlı Fiyatlar</h3><span class="badge-live">CANLI</span></div>
+      <div id="live-prices"><div style="font-size:11px;color:var(--text3)"><span class="sp"></span> Yükleniyor…</div></div>
+    </div>
+    <div class="card">
+      <div class="card-h"><div class="card-icon" style="background:rgba(217,119,6,.08)">🪙</div><h3>Emtia Piyasaları</h3></div>
+      <div id="commodity-table"><div style="font-size:11px;color:var(--text3)"><span class="sp"></span> Yükleniyor…</div></div>
+    </div>
+  </div>
+
+  <div class="two-col" style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+    <div class="card">
+      <div class="card-h"><div class="card-icon" style="background:rgba(5,150,105,.08)">🌏</div><h3>Ülke Makro</h3></div>
+      <table class="dt">
+        <thead><tr><th>Ülke</th><th>GSYİH</th><th>Enf.</th><th></th></tr></thead>
+        <tbody>
+          <tr><td class="s">ABD</td><td>%2.8</td><td>%3.1</td><td><span class="bdg up">Güçlü</span></td></tr>
+          <tr><td class="s">Euro Bölgesi</td><td>%0.9</td><td>%2.4</td><td><span class="bdg wn">Yavaş</span></td></tr>
+          <tr><td class="s">Çin</td><td>%4.9</td><td>%0.7</td><td><span class="bdg nt">Orta</span></td></tr>
+          <tr><td class="s">Japonya</td><td>%1.2</td><td>%2.8</td><td><span class="bdg te">Değişim</span></td></tr>
+          <tr><td class="s">Türkiye</td><td>%3.2</td><td>%31.5</td><td><span class="bdg tu">Toparlanma</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card">
+      <div class="card-h"><div class="card-icon" style="background:rgba(220,38,38,.08)">⚡</div><h3>Risk Radar</h3></div>
+      <div class="rr" style="display:flex;align-items:center;gap:8px;margin-bottom:8px"><span class="mml" style="min-width:140px">Jeopolitik Gerilim</span><div style="flex:1;height:4px;background:var(--bg3);border-radius:4px;overflow:hidden"><div style="width:72%;height:100%;background:var(--red)"></div></div><span class="bdg dn">Yüksek</span></div>
+      <div class="rr" style="display:flex;align-items:center;gap:8px;margin-bottom:8px"><span class="mml" style="min-width:140px">Enflasyon Baskısı</span><div style="flex:1;height:4px;background:var(--bg3);border-radius:4px;overflow:hidden"><div style="width:58%;height:100%;background:var(--gold)"></div></div><span class="bdg wn">Orta</span></div>
+      <div class="rr" style="display:flex;align-items:center;gap:8px;margin-bottom:8px"><span class="mml" style="min-width:140px">Resesyon Riski</span><div style="flex:1;height:4px;background:var(--bg3);border-radius:4px;overflow:hidden"><div style="width:35%;height:100%;background:var(--accent)"></div></div><span class="bdg te">Düşük</span></div>
+      <div class="rr" style="display:flex;align-items:center;gap:8px"><span class="mml" style="min-width:140px">Dolar Gücü</span><div style="flex:1;height:4px;background:var(--bg3);border-radius:4px;overflow:hidden"><div style="width:64%;height:100%;background:var(--gold)"></div></div><span class="bdg wn">Güçlü</span></div>
+      <div class="ab" style="background:var(--bg3);border-radius:10px;padding:12px 14px;border:1px solid var(--sidebar-border);margin-top:10px">
+        <div style="font-size:9px;font-weight:700;color:var(--text3);letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px">Haftalık Not</div>
+        <p style="font-size:11px;color:var(--text2);line-height:1.6">Fed 2026 için 2 faiz indirimi sinyali verdi. Gelişmekte olan piyasalara sermaye akışı bekleniyor.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="module" data-module="src/modules/world.module.js">
+import { WorldModule } from '../src/modules/world.module.js';
+WorldModule.init();
+</script>

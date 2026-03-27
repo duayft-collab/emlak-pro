@@ -1,0 +1,62 @@
+<!--
+  Strategy Hub — pages/anayasa.html
+  Versiyon: 5.1.2 | 2026-03-26
+-->
+<div class="page-content">
+
+  <div class="ph">
+    <h2>Evrensel Yazılım Mimarisi &amp; Geliştirme Anayasası</h2>
+    <p>v3.0 — 2026-03-24 · Tüm projeler için teknoloji-agnostik temel kurallar</p>
+  </div>
+
+  <div class="sg">
+    <div class="sc"><div class="scl">Toplam Kural</div><div class="scv">16</div><div><span class="bdg up">AKTİF</span></div></div>
+    <div class="sc"><div class="scl">Kritik</div><div class="scv" style="color:var(--red)">6</div><div><span class="bdg dn">🔴 Kritik</span></div></div>
+    <div class="sc"><div class="scl">Yüksek Öncelik</div><div class="scv" style="color:var(--gold)">9</div><div><span class="bdg wn">🟡 Yüksek</span></div></div>
+    <div class="sc"><div class="scl">Versiyon</div><div class="scv">3.0</div><div><span class="bdg te">2026</span></div></div>
+  </div>
+
+  <div class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-tag">⚖️ Sistem Anayasası</div>
+    <h2>Hızlı olmak zorunda değilsin. Ama <em>doğru</em> olmak zorundasın.</h2>
+    <div class="hero-grid">
+      <p class="hero-quote">
+        <strong>Temel Felsefe:</strong> Kendini sıradan bir geliştirici gibi değil,
+        <strong>sistemi kuran bir mimar</strong> gibi konumlandır. Amaç hızlı çözüm değil, sağlam sistem üretmek.
+      </p>
+      <div class="hero-btns">
+        <button class="btn-primary" onclick="document.getElementById('anayasa-rules').scrollIntoView({behavior:'smooth'})">16 Kuralı Gör</button>
+        <button class="btn-secondary" onclick="document.getElementById('anayasa-checklist').scrollIntoView({behavior:'smooth'})">Kontrol Listesi</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" id="anayasa-rules" style="margin-bottom:16px">
+    <div class="card-h">
+      <div class="card-icon" style="background:rgba(220,38,38,.08)">📋</div>
+      <h3>16 Evrensel Kural</h3>
+    </div>
+    <table class="dt">
+      <thead><tr><th>#</th><th>Kural</th><th>Anahtar</th><th>Öncelik</th></tr></thead>
+      <tbody id="anayasa-rule-table"></tbody>
+    </table>
+  </div>
+
+  <div class="card" id="anayasa-checklist">
+    <div class="card-h">
+      <div class="card-icon" style="background:rgba(5,150,105,.08)">✅</div>
+      <h3>Her Görev Sonrası Kontrol Listesi</h3>
+    </div>
+    <div class="checklist-progress" style="margin-bottom:6px">
+      <div class="checklist-progress-bar" id="checklist-progress-bar" style="width:0%;background:var(--accent)"></div>
+    </div>
+    <div style="font-size:10px;color:var(--text3);margin-bottom:12px" id="checklist-progress-label">0 / 12 tamamlandı</div>
+    <div id="anayasa-checklist-items"></div>
+    <div style="margin-top:12px;text-align:right">
+      <button class="btn-secondary" id="checklist-reset-btn" style="font-size:11px;padding:6px 14px">Sıfırla</button>
+    </div>
+  </div>
+</div>
+
+<script type="module" data-module="src/modules/anayasa.module.js"></script>

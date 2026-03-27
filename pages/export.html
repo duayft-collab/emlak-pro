@@ -1,0 +1,40 @@
+<!--
+  Strategy Hub — pages/export.html
+  İhracat & Ticaret sayfası
+  Versiyon: 5.1.0 | 2026-03-26
+-->
+<div class="page-content">
+  <div class="ph"><h2>İhracat &amp; Ticaret</h2><p>Pazar fırsatları, sektör analizleri</p></div>
+
+  <div class="sg">
+    <div class="sc"><div class="scl">Aylık İhracat</div><div class="scv">$22.4B</div><div><span class="bdg up">+%12.4</span></div></div>
+    <div class="sc"><div class="scl">Yıllık Hedef</div><div class="scv">$270B</div><div><span class="bdg te">2026</span></div></div>
+    <div class="sc"><div class="scl">TL Avantajı</div><div class="scv">+%18</div><div><span class="bdg up">Güçlü</span></div></div>
+    <div class="sc"><div class="scl">USD/TRY Bant</div><div class="scv">44–46</div><div><span class="bdg wn">Volatil</span></div></div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
+    <div class="card">
+      <div class="card-h"><div class="card-icon" style="background:rgba(5,150,105,.08)">🌐</div><h3>Pazar Fırsatları</h3></div>
+      <table class="dt">
+        <thead><tr><th>Bölge</th><th>Sektör</th><th>Potansiyel</th><th></th></tr></thead>
+        <tbody>
+          <tr><td><span style="font-size:9px;font-weight:700;color:var(--accent);margin-right:4px">MENA</span>Körfez</td><td>İnşaat</td><td>$4.2B</td><td><span class="bdg up">Açık</span></td></tr>
+          <tr><td><span style="font-size:9px;font-weight:700;color:var(--green);margin-right:4px">AB</span>Almanya</td><td>Otomotiv</td><td>$3.8B</td><td><span class="bdg up">Güçlü</span></td></tr>
+          <tr><td><span style="font-size:9px;font-weight:700;color:var(--green);margin-right:4px">AB</span>İtalya</td><td>Tekstil</td><td>$2.1B</td><td><span class="bdg wn">Orta</span></td></tr>
+          <tr><td><span style="font-size:9px;font-weight:700;color:var(--accent2);margin-right:4px">ASYA</span>Japonya</td><td>Elektronik</td><td>$890M</td><td><span class="bdg te">Büyüyor</span></td></tr>
+          <tr><td><span style="font-size:9px;font-weight:700;color:var(--red);margin-right:4px">ABD</span>Amerika</td><td>Savunma</td><td>$1.4B</td><td><span class="bdg te">Gelişiyor</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card">
+      <div class="card-h"><div class="card-icon" style="background:rgba(37,99,235,.08)">📊</div><h3>Sektör Dağılımı</h3></div>
+      <div id="sector-chart"></div>
+    </div>
+  </div>
+</div>
+
+<script type="module" data-module="src/modules/export.module.js">
+import { ExportModule } from '../src/modules/export.module.js';
+ExportModule.init();
+</script>

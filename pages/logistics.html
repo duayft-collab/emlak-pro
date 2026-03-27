@@ -1,0 +1,62 @@
+<!--
+  Strategy Hub — pages/logistics.html
+  Navlun & Lojistik sayfası
+  Versiyon: 5.1.0 | 2026-03-26
+-->
+<div class="page-content">
+  <div class="ph"><h2>Navlun &amp; Lojistik</h2><p>Deniz taşımacılığı endeksleri ve rota maliyetleri</p></div>
+
+  <div class="sg">
+    <div class="sc"><div class="scl">SCFI</div><div class="scv">2,213</div><div><span class="bdg dn">+6.40%</span></div></div>
+    <div class="sc"><div class="scl">Baltic Dry</div><div class="scv">1,850</div><div><span class="bdg up">+2.10%</span></div></div>
+    <div class="sc"><div class="scl">Brent Petrol</div><div class="scv" data-live="brent">$84.20</div><div><span class="bdg dn">+3.20%</span></div></div>
+    <div class="sc"><div class="scl">Bunker IFO380</div><div class="scv">$480</div><div><span class="bdg dn">+2.80%</span></div></div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
+    <div class="card">
+      <div class="card-h"><div class="card-icon" style="background:rgba(37,99,235,.08)">⚓</div><h3>Konteyner Navlun</h3></div>
+      <table class="dt">
+        <thead><tr><th>Rota</th><th>20ft</th><th>Haftalık</th></tr></thead>
+        <tbody>
+          <tr><td class="s">Şangay → Avrupa</td><td>$3,420</td><td><span class="bdg dn">+8.2%</span></td></tr>
+          <tr><td class="s">Şangay → ABD Batı</td><td>$2,890</td><td><span class="bdg dn">+5.4%</span></td></tr>
+          <tr><td class="s">Şangay → ABD Doğu</td><td>$4,210</td><td><span class="bdg dn">+6.1%</span></td></tr>
+          <tr><td class="s">Mersin → K.Avrupa</td><td>$1,850</td><td><span class="bdg dn">+4.8%</span></td></tr>
+          <tr><td class="s">Mersin → MENA</td><td>$680</td><td><span class="bdg up">-1.2%</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card">
+      <div class="card-h"><div class="card-icon" style="background:rgba(5,150,105,.08)">📊</div><h3>Liman Yoğunluğu</h3></div>
+      <div id="port-utilization"></div>
+      <div class="ab" style="background:var(--bg3);border-radius:10px;padding:12px 14px;border:1px solid var(--sidebar-border);margin-top:10px">
+        <div style="font-size:9px;font-weight:700;color:var(--text3);letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px">Strateji</div>
+        <p style="font-size:11px;color:var(--text2);line-height:1.6">Kızıldeniz kapalı: Umit Burnu %34 arttı. 12–14 gün ek süre planlayın.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-h"><div class="card-icon" style="background:rgba(220,38,38,.08)">🗺</div><h3>Rota Risk Haritası</h3></div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
+      <div style="padding:12px;background:rgba(220,38,38,.06);border:1px solid rgba(220,38,38,.15);border-radius:12px">
+        <div style="font-size:10px;font-weight:700;color:var(--red);margin-bottom:4px">🔴 KAPALI — Kızıldeniz</div>
+        <p style="font-size:11px;color:var(--text2);line-height:1.5">Husilerin saldırıları nedeniyle büyük hatlar rotayı devre dışı bıraktı. Umit Burnu alternatif.</p>
+      </div>
+      <div style="padding:12px;background:rgba(217,119,6,.06);border:1px solid rgba(217,119,6,.15);border-radius:12px">
+        <div style="font-size:10px;font-weight:700;color:var(--gold);margin-bottom:4px">🟡 DİKKAT — Süveyş Kanalı</div>
+        <p style="font-size:11px;color:var(--text2);line-height:1.5">Geçiş devam ediyor ancak ek güvenlik prosedürleri süreyi uzatıyor.</p>
+      </div>
+      <div style="padding:12px;background:rgba(5,150,105,.06);border:1px solid rgba(5,150,105,.15);border-radius:12px">
+        <div style="font-size:10px;font-weight:700;color:var(--green);margin-bottom:4px">🟢 AÇIK — Mersin Rotaları</div>
+        <p style="font-size:11px;color:var(--text2);line-height:1.5">MENA ve Avrupa hatları normal seyrediyor. Kapasite müsait.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="module" data-module="src/modules/logistics.module.js">
+import { LogisticsModule } from '../src/modules/logistics.module.js';
+LogisticsModule.init();
+</script>

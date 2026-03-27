@@ -1,0 +1,156 @@
+<!--
+  Strategy Hub — pages/dashboard.html
+  Genel Bakış sayfası içeriği
+  Anayasa: K01 (Tek Sorumluluk — sadece bu sayfanın HTML'i)
+  Versiyon: 5.1.0 | 2026-03-26
+-->
+<div class="page-content">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-tag">⚡ Sabah Raporu</div>
+    <h2 id="hero-brief">Küresel ticaret rotalarında <em>navlun krizi</em> derinleşiyor — likiditeni koru, nakit akışı üret.</h2>
+    <div class="hero-grid">
+      <p class="hero-quote">
+        <strong>Kiyosaki mantığı:</strong> Bu dönemde likit kalmak değil, nakit akışı üreten gayrimenkul varlıklarına odaklanmak daha akıllı bir strateji.
+      </p>
+      <div class="hero-btns">
+        <button class="btn-primary" onclick="HubRouter.navigate('logistics')">Navlun Analizi</button>
+        <button class="btn-secondary" onclick="HubRouter.navigate('export')">İhracat Listesi</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- UYARILAR -->
+  <div id="dash-alerts" class="alerts"></div>
+
+  <!-- FİYAT ŞERİDİ (fx.module.js tarafından doldurulur) -->
+  <div class="price-strip">
+    <div class="price-card">
+      <div class="pc-lbl">USD / TRY <span id="pc-usd-dot" style="width:5px;height:5px;background:var(--green);border-radius:50%;display:inline-block;animation:blink 1.5s infinite"></span></div>
+      <div class="pc-val" id="pc-usd"><span class="sp"></span></div>
+      <div id="pc-usd-c" class="pc-chg nt">yükleniyor</div>
+      <div class="pc-bar"><div class="pc-bar-fill" style="width:55%;background:var(--green)"></div></div>
+    </div>
+    <div class="price-card">
+      <div class="pc-lbl">EUR / TRY <span style="width:5px;height:5px;background:var(--green);border-radius:50%;display:inline-block;animation:blink 1.5s infinite"></span></div>
+      <div class="pc-val" id="pc-eur"><span class="sp"></span></div>
+      <div id="pc-eur-c" class="pc-chg nt">yükleniyor</div>
+      <div class="pc-bar"><div class="pc-bar-fill" style="width:60%;background:var(--gold)"></div></div>
+    </div>
+    <div class="price-card">
+      <div class="pc-lbl">ONS ALTIN <span style="width:5px;height:5px;background:var(--green);border-radius:50%;display:inline-block;animation:blink 1.5s infinite"></span></div>
+      <div class="pc-val" id="pc-gold"><span class="sp"></span></div>
+      <div id="pc-gold-c" class="pc-chg nt">yükleniyor</div>
+      <div class="pc-bar"><div class="pc-bar-fill" style="width:65%;background:var(--gold)"></div></div>
+    </div>
+    <div class="price-card">
+      <div class="pc-lbl">BITCOIN <span style="width:5px;height:5px;background:var(--green);border-radius:50%;display:inline-block;animation:blink 1.5s infinite"></span></div>
+      <div class="pc-val" id="pc-btc"><span class="sp"></span></div>
+      <div id="pc-btc-c" class="pc-chg nt">yükleniyor</div>
+      <div class="pc-bar"><div class="pc-bar-fill" style="width:68%;background:var(--accent2)"></div></div>
+    </div>
+  </div>
+
+  <!-- ANA GRID -->
+  <div class="main-grid">
+    <div class="left-col">
+
+      <!-- Navlun & Makro -->
+      <div class="card">
+        <div class="card-h">
+          <div class="card-icon" style="background:rgba(37,99,235,.08)">⛵</div>
+          <h3>Navlun &amp; Makro</h3>
+          <span class="badge-live">CANLI</span>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+          <div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--sidebar-border)">
+              <div><div style="font-size:11px;color:var(--text2)">SCFI Konteyner</div><div style="font-size:10px;font-weight:700;color:var(--red)">↑ %6.40</div></div>
+              <div style="font-family:var(--mono);font-size:14px;font-weight:600;color:var(--text)">2,213</div>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--sidebar-border)">
+              <div><div style="font-size:11px;color:var(--text2)">Baltic Dry</div><div style="font-size:10px;font-weight:700;color:var(--green)">↑ %2.10</div></div>
+              <div style="font-family:var(--mono);font-size:14px;font-weight:600;color:var(--text)">1,850</div>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:7px 0">
+              <div><div style="font-size:11px;color:var(--text2)">EUR/USD</div><div style="font-size:10px;font-weight:700;color:var(--text3)" id="eurusd-sub">yükleniyor</div></div>
+              <div style="font-family:var(--mono);font-size:14px;font-weight:600;color:var(--text)" id="eurusd-val">—</div>
+            </div>
+          </div>
+          <div>
+            <div class="mm"><span class="mml">Enflasyon (TÜFE)</span><span class="mmv hi">%31.5</span></div>
+            <div class="mm"><span class="mml">CDS (5Y)</span><span class="mmv ne">245</span></div>
+            <div class="mm"><span class="mml">İhracat Artışı</span><span class="mmv gd">%12.4</span></div>
+            <div class="mm"><span class="mml">BIST 100</span><span class="mmv gd" id="bist-dash">—</span></div>
+          </div>
+        </div>
+        <div class="ab">
+          <div class="abl">Lojistik Analizi</div>
+          <p>Petrol artışı navlunda ek <strong style="color:var(--red)">%5</strong> yükleme bekleniyor (15 gün). Kızıldeniz rotası kapalı, Umit Burnu %34 arttı.</p>
+        </div>
+      </div>
+
+      <!-- Alt ikili -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+        <div class="card">
+          <div class="card-h"><div class="card-icon" style="background:rgba(217,119,6,.08)">🏠</div><h3>Gayrimenkul</h3></div>
+          <div class="mm"><span class="mml">Konut Endeksi</span><span class="mmv gd">%4.2/ay</span></div>
+          <div class="mm"><span class="mml">Kira Getirisi</span><span class="mmv gd">%6.8</span></div>
+          <div class="mm"><span class="mml">Depo m²/ay</span><span class="mmv ne">52 TL</span></div>
+          <button class="smb" onclick="HubRouter.navigate('realestate')" style="font-size:11px;color:var(--accent);font-weight:700;margin-top:8px">Detay →</button>
+        </div>
+        <div class="card">
+          <div class="card-h"><div class="card-icon" style="background:rgba(5,150,105,.08)">🌍</div><h3>İhracat</h3></div>
+          <div style="font-size:12px;color:var(--text2);padding:6px 0;border-bottom:1px solid var(--sidebar-border)"><span class="tag tm" style="font-size:9px;font-weight:700;color:var(--accent);margin-right:4px">MENA</span>İnşaat malz.</div>
+          <div style="font-size:12px;color:var(--text2);padding:6px 0;border-bottom:1px solid var(--sidebar-border)"><span class="tag te" style="font-size:9px;font-weight:700;color:var(--green);margin-right:4px">AB</span>Yeşil enerji</div>
+          <div style="font-size:12px;color:var(--text2);padding:6px 0"><span class="tag ta" style="font-size:9px;font-weight:700;color:var(--accent2);margin-right:4px">ASYA</span>Tekstil</div>
+          <button class="smb" onclick="HubRouter.navigate('export')" style="font-size:11px;color:var(--accent);font-weight:700;margin-top:8px">Ülkeler →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SAĞ KOLON -->
+    <div class="right-col">
+      <div class="card">
+        <div class="card-h"><div class="card-icon" style="background:rgba(37,99,235,.08)">🌤</div><h3>Hava Durumu</h3></div>
+        <div id="weather-dash"><div style="font-size:11px;color:var(--text3)"><span class="sp"></span> Yükleniyor…</div></div>
+        <button onclick="HubRouter.navigate('weather')" style="font-size:11px;color:var(--accent);font-weight:700;margin-top:8px">Tüm Şehirler →</button>
+      </div>
+
+      <div class="card" style="background:var(--text);color:var(--bg2)">
+        <div style="font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;opacity:.5;margin-bottom:8px">🔑 Yatırımcı Görüşü</div>
+        <p style="font-family:'DM Serif Display',serif;font-size:16px;line-height:1.6;font-style:italic;opacity:.9">"Piyasa katılımcıları genellikle rasyonel değildir. Fırsatlar bu rasyonel olmayan korkular içerisindedir."</p>
+        <div style="font-size:9px;font-weight:700;opacity:.4;letter-spacing:.1em;text-transform:uppercase;margin-top:8px">— Warren Buffett</div>
+      </div>
+
+      <div class="card">
+        <div class="card-h"><div class="card-icon" style="background:rgba(124,58,237,.08)">🎓</div><h3>Gelişim Ajandası</h3></div>
+        <div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid var(--sidebar-border)">
+          <div style="width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0"></div>
+          <div><div style="font-size:9px;color:var(--text3);font-weight:700">KİTAP</div><div style="font-size:11px;font-weight:600;color:var(--text)">The Great Reset</div><div style="font-size:10px;color:var(--text3)">%68 · Klaus Schwab</div></div>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid var(--sidebar-border)">
+          <div style="width:6px;height:6px;border-radius:50%;background:var(--red);flex-shrink:0"></div>
+          <div><div style="font-size:9px;color:var(--text3);font-weight:700">ÇOCUK</div><div style="font-size:11px;font-weight:600;color:var(--text)">Yaratıcı Problem Çözme</div><div style="font-size:10px;color:var(--text3)">Cumartesi etkinliği</div></div>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;padding:6px 0">
+          <div style="width:6px;height:6px;border-radius:50%;background:var(--green);flex-shrink:0"></div>
+          <div><div style="font-size:9px;color:var(--text3);font-weight:700">YATIRIM</div><div style="font-size:11px;font-weight:600;color:var(--text)">Gayrimenkul Analizi</div><div style="font-size:10px;color:var(--text3)">OSB bölgesi araştırması</div></div>
+        </div>
+        <button onclick="HubRouter.navigate('growth')" style="font-size:11px;color:var(--accent);font-weight:700;margin-top:8px">Tüm Ajanda →</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="foot" style="display:flex;justify-content:space-between;align-items:center;margin-top:24px;padding-top:16px;border-top:1px solid var(--sidebar-border);font-size:10px;color:var(--text3)">
+    <span>© 2026 Strategy Hub v5.1.0</span>
+    <div style="display:flex;gap:20px"><span>Canlı Veri</span><span id="last-refresh">—</span></div>
+  </footer>
+</div>
+
+<script type="module" data-module="src/modules/dashboard.module.js">
+import { DashboardModule } from '../src/modules/dashboard.module.js';
+DashboardModule.init();
+</script>

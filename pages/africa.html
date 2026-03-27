@@ -1,0 +1,290 @@
+<!--
+  Strategy Hub — pages/africa.html
+  Afrika Pazarı — canlı kurlar, navlun, haberler, risk, devlet destekleri
+  Versiyon: 5.3.0 | 2026-03-27
+-->
+<div class="page-content">
+  <div class="ph">
+    <h2>Afrika Pazarı</h2>
+    <p>Canlı kurlar · Navlun rotaları · Ülke risk skorları · Devlet destekleri · Haberler</p>
+  </div>
+
+  <!-- Afrika Döviz Şeridi -->
+  <div class="price-strip" style="grid-template-columns:repeat(5,minmax(0,1fr))">
+    <div class="price-card">
+      <div class="pc-lbl">USD / XOF <span style="width:5px;height:5px;background:var(--green);border-radius:50%;display:inline-block;animation:blink 1.5s infinite"></span></div>
+      <div class="pc-val" id="af-xof"><span class="sp"></span></div>
+      <div id="af-xof-c" class="pc-chg nt">yükleniyor</div>
+      <div style="font-size:9px;color:var(--text3);margin-top:4px">Batı Afrika CFA</div>
+    </div>
+    <div class="price-card">
+      <div class="pc-lbl">USD / NGN <span style="width:5px;height:5px;background:var(--green);border-radius:50%;display:inline-block;animation:blink 1.5s infinite"></span></div>
+      <div class="pc-val" id="af-ngn"><span class="sp"></span></div>
+      <div id="af-ngn-c" class="pc-chg nt">yükleniyor</div>
+      <div style="font-size:9px;color:var(--text3);margin-top:4px">Nijerya Naira</div>
+    </div>
+    <div class="price-card">
+      <div class="pc-lbl">USD / KES <span style="width:5px;height:5px;background:var(--green);border-radius:50%;display:inline-block;animation:blink 1.5s infinite"></span></div>
+      <div class="pc-val" id="af-kes"><span class="sp"></span></div>
+      <div id="af-kes-c" class="pc-chg nt">yükleniyor</div>
+      <div style="font-size:9px;color:var(--text3);margin-top:4px">Kenya Şilini</div>
+    </div>
+    <div class="price-card">
+      <div class="pc-lbl">USD / ZAR <span style="width:5px;height:5px;background:var(--green);border-radius:50%;display:inline-block;animation:blink 1.5s infinite"></span></div>
+      <div class="pc-val" id="af-zar"><span class="sp"></span></div>
+      <div id="af-zar-c" class="pc-chg nt">yükleniyor</div>
+      <div style="font-size:9px;color:var(--text3);margin-top:4px">Güney Afrika Randı</div>
+    </div>
+    <div class="price-card">
+      <div class="pc-lbl">USD / ETB <span style="width:5px;height:5px;background:var(--green);border-radius:50%;display:inline-block;animation:blink 1.5s infinite"></span></div>
+      <div class="pc-val" id="af-etb"><span class="sp"></span></div>
+      <div id="af-etb-c" class="pc-chg nt">yükleniyor</div>
+      <div style="font-size:9px;color:var(--text3);margin-top:4px">Etiyopya Birr</div>
+    </div>
+  </div>
+
+  <!-- Ana Grid -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
+
+    <!-- #5: Navlun Hesaplayıcı -->
+    <div class="card">
+      <div class="card-h">
+        <div class="card-icon" style="background:rgba(37,99,235,.08)">⚓</div>
+        <h3>Mersin → Afrika Navlun Rotaları</h3>
+      </div>
+      <div style="margin-bottom:10px;display:flex;gap:8px;align-items:center">
+        <select id="af-route-sel" class="ed-sel" style="flex:1">
+          <option value="dakar">Dakar (Senegal)</option>
+          <option value="lagos">Lagos (Nijerya)</option>
+          <option value="abidjan">Abidjan (Fildişi S.)</option>
+          <option value="mombasa">Mombasa (Kenya)</option>
+          <option value="durban">Durban (Güney Afrika)</option>
+          <option value="djibouti">Cibuti (Etiyopya kapısı)</option>
+          <option value="accra">Accra (Gana)</option>
+          <option value="dar">Dar es Salaam (Tanzanya)</option>
+        </select>
+        <select id="af-cnt-sel" class="ed-sel" style="width:80px">
+          <option>20ft</option>
+          <option>40ft</option>
+        </select>
+      </div>
+      <div id="af-navlun-result"></div>
+      <div class="ab" style="margin-top:8px">
+        <div class="abl">Kızıldeniz Uyarısı</div>
+        <p style="font-size:11px;color:var(--text2);line-height:1.5">Kızıldeniz kapalı — Umit Burnu rotası aktif. Batı Afrika'ya +8–12 gün, Doğu Afrika'ya +4–6 gün ek süre hesaplayın.</p>
+      </div>
+    </div>
+
+    <!-- #9: Kâr Marjı Hesaplayıcı -->
+    <div class="card">
+      <div class="card-h">
+        <div class="card-icon" style="background:rgba(5,150,105,.08)">💰</div>
+        <h3>İhracat Kâr Marjı Hesaplayıcı</h3>
+      </div>
+      <div class="ed-grid" style="margin-bottom:10px">
+        <span class="ed-lbl">Satış Fiyatı</span>
+        <div style="display:flex;gap:4px">
+          <input class="ed-inp" id="af-price" type="number" placeholder="10,000" style="flex:1">
+          <select class="ed-sel" id="af-currency" style="width:60px"><option>USD</option><option>EUR</option></select>
+        </div>
+        <span class="ed-lbl">Navlun (USD)</span>
+        <input class="ed-inp" id="af-freight" type="number" placeholder="1,850">
+        <span class="ed-lbl">Gümrük (%)</span>
+        <input class="ed-inp" id="af-customs" type="number" placeholder="5" value="5">
+        <span class="ed-lbl">Maliyet (TL)</span>
+        <input class="ed-inp" id="af-cost" type="number" placeholder="250,000">
+      </div>
+      <button class="btn-primary" style="width:100%;margin-bottom:10px" onclick="AfricaModule.calcMargin()">Hesapla</button>
+      <div id="af-margin-result"></div>
+    </div>
+  </div>
+
+  <!-- #3: AI Risk Raporu + #7: Tahsilat Riski -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
+    <div class="card">
+      <div class="card-h">
+        <div class="card-icon" style="background:rgba(124,58,237,.08)">🤖</div>
+        <h3>AI Afrika Ülke Risk Raporu</h3>
+        <span class="badge-live">Claude</span>
+      </div>
+      <div style="display:flex;gap:8px;margin-bottom:10px">
+        <select id="af-risk-country" class="ed-sel" style="flex:1">
+          <option value="Nigeria">Nijerya</option>
+          <option value="Kenya">Kenya</option>
+          <option value="Ghana">Gana</option>
+          <option value="South Africa">Güney Afrika</option>
+          <option value="Ethiopia">Etiyopya</option>
+          <option value="Senegal">Senegal</option>
+          <option value="Tanzania">Tanzanya</option>
+          <option value="Ivory Coast">Fildişi Sahili</option>
+          <option value="Egypt">Mısır</option>
+          <option value="Morocco">Fas</option>
+          <option value="Libya">Libya</option>
+        </select>
+        <button class="btn-primary" style="padding:6px 14px;font-size:11px" onclick="AfricaModule.getRiskReport()">Analiz Et</button>
+      </div>
+      <div id="af-risk-result" style="font-size:12px;color:var(--text2);line-height:1.7;min-height:60px">
+        <span style="color:var(--text3);font-size:11px">Ülke seç → AI analiz üretsin</span>
+      </div>
+    </div>
+
+    <!-- #7: Tahsilat Riski Skor Tablosu -->
+    <div class="card">
+      <div class="card-h">
+        <div class="card-icon" style="background:rgba(220,38,38,.08)">⚠️</div>
+        <h3>Tahsilat Risk Skoru</h3>
+      </div>
+      <table class="dt">
+        <thead><tr><th>Ülke</th><th>Risk</th><th>Öneri</th></tr></thead>
+        <tbody>
+          <tr><td class="s">Nijerya</td><td><span class="bdg dn">Yüksek</span></td><td style="font-size:10px">Akreditif zorunlu</td></tr>
+          <tr><td class="s">Kenya</td><td><span class="bdg wn">Orta</span></td><td style="font-size:10px">Ön ödeme + sigorta</td></tr>
+          <tr><td class="s">Güney Afrika</td><td><span class="bdg up">Düşük</span></td><td style="font-size:10px">Açık hesap OK</td></tr>
+          <tr><td class="s">Gana</td><td><span class="bdg wn">Orta</span></td><td style="font-size:10px">%30 ön ödeme</td></tr>
+          <tr><td class="s">Etiyopya</td><td><span class="bdg dn">Yüksek</span></td><td style="font-size:10px">Akreditif zorunlu</td></tr>
+          <tr><td class="s">Senegal</td><td><span class="bdg up">Düşük</span></td><td style="font-size:10px">Açık hesap OK</td></tr>
+          <tr><td class="s">Libya</td><td><span class="bdg dn">Çok Yüksek</span></td><td style="font-size:10px">%100 ön ödeme</td></tr>
+          <tr><td class="s">Mısır</td><td><span class="bdg wn">Orta</span></td><td style="font-size:10px">Akreditif önerilir</td></tr>
+        </tbody>
+      </table>
+      <div class="ab" style="margin-top:8px">
+        <div class="abl">Türk Eximbank</div>
+        <p style="font-size:11px;color:var(--text2);line-height:1.5">Afrika ihracat alacak sigortası için Türk Eximbank başvurusu — risk yüksek ülkelerde zorunlu.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- #6: Devlet Destekleri + #8: Afrika Haber Akışı -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
+    <div class="card">
+      <div class="card-h">
+        <div class="card-icon" style="background:rgba(217,119,6,.08)">🏛️</div>
+        <h3>2026 Devlet Destekleri — Afrika</h3>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <div style="padding:10px 12px;background:rgba(5,150,105,.06);border:1px solid rgba(5,150,105,.15);border-radius:8px">
+          <div style="font-size:10px;font-weight:700;color:var(--green);margin-bottom:3px">FUAR DESTEĞİ</div>
+          <div style="font-size:11px;color:var(--text2)">Stand kiralama + tasarım dahil. Afrika heyetleri 2026'da artırıldı.</div>
+        </div>
+        <div style="padding:10px 12px;background:rgba(37,99,235,.06);border:1px solid rgba(37,99,235,.15);border-radius:8px">
+          <div style="font-size:10px;font-weight:700;color:var(--accent);margin-bottom:3px">SERTİFİKA HİBESİ</div>
+          <div style="font-size:11px;color:var(--text2)">15.260.421 TL'ye kadar. Afrika pazarında zorunlu belgeleri kapsar.</div>
+        </div>
+        <div style="padding:10px 12px;background:rgba(124,58,237,.06);border:1px solid rgba(124,58,237,.15);border-radius:8px">
+          <div style="font-size:10px;font-weight:700;color:var(--accent2);margin-bottom:3px">MARKA TESCİLİ</div>
+          <div style="font-size:11px;color:var(--text2)">Yıllık 2.860.670 TL — 4 yıl. Afrika ülkelerinde marka koruması.</div>
+        </div>
+        <div style="padding:10px 12px;background:rgba(217,119,6,.06);border:1px solid rgba(217,119,6,.15);border-radius:8px">
+          <div style="font-size:10px;font-weight:700;color:var(--gold);margin-bottom:3px">PAZAR ARAŞTIRMASI</div>
+          <div style="font-size:11px;color:var(--text2)">Seyahat + konaklama dahil. Proje başına 761.017 TL, 5 yurt dışı seyahat.</div>
+        </div>
+        <div style="padding:10px 12px;background:rgba(220,38,38,.06);border:1px solid rgba(220,38,38,.15);border-radius:8px">
+          <div style="font-size:10px;font-weight:700;color:var(--red);margin-bottom:3px">TURQUALITY</div>
+          <div style="font-size:11px;color:var(--text2)">Mağaza açma, franchising, dekorasyon. Afrika'da kalıcı varlık için.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- #8: Afrika Haber Akışı -->
+    <div class="card">
+      <div class="card-h">
+        <div class="card-icon" style="background:rgba(37,99,235,.08)">📰</div>
+        <h3>Afrika Ekonomi Haberleri</h3>
+        <span class="badge-live">CANLI</span>
+      </div>
+      <div id="af-news-feed">
+        <div style="font-size:11px;color:var(--text3)"><span class="sp"></span> Yükleniyor…</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- #4: Pipeline Afrika Özeti -->
+  <div class="card" style="margin-bottom:16px">
+    <div class="card-h">
+      <div class="card-icon" style="background:rgba(37,99,235,.08)">📊</div>
+      <h3>Afrika Pipeline Özeti</h3>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px" id="af-pipeline-stats">
+      <div class="sc"><div class="scl">Toplam Değer</div><div class="scv" id="af-pipe-total">—</div></div>
+      <div class="sc"><div class="scl">Aktif Fırsat</div><div class="scv" id="af-pipe-count">—</div></div>
+      <div class="sc"><div class="scl">En Büyük Pazar</div><div class="scv" id="af-pipe-top">—</div></div>
+      <div class="sc"><div class="scl">Kritik Aşama</div><div class="scv" id="af-pipe-stage">—</div></div>
+    </div>
+    <!-- #4 Ülke + Sektör'lü Pipeline Formu -->
+    <div id="af-pipeline-list" style="margin-bottom:10px"></div>
+    <div class="ed-wrap">
+      <div class="ed-title">+ Afrika Fırsatı Ekle</div>
+      <div class="ed-grid">
+        <span class="ed-lbl">Şirket</span><input class="ed-inp" id="af-pipe-name" placeholder="Al-Futtaim Lagos">
+        <span class="ed-lbl">Değer</span><input class="ed-inp" id="af-pipe-val" placeholder="$500,000">
+        <span class="ed-lbl">Ülke</span>
+        <select class="ed-sel" id="af-pipe-country">
+          <option>Nijerya</option><option>Kenya</option><option>Güney Afrika</option>
+          <option>Gana</option><option>Etiyopya</option><option>Senegal</option>
+          <option>Tanzanya</option><option>Fildişi Sahili</option><option>Mısır</option>
+          <option>Fas</option><option>Libya</option><option>Cezayir</option>
+        </select>
+        <span class="ed-lbl">Sektör</span>
+        <select class="ed-sel" id="af-pipe-sector">
+          <option>İnşaat Malz.</option><option>Tekstil</option><option>Gıda</option>
+          <option>Makine</option><option>Kimya</option><option>Otomotiv</option>
+          <option>Elektrik</option><option>Savunma</option><option>Diğer</option>
+        </select>
+        <span class="ed-lbl">Aşama</span>
+        <select class="ed-sel" id="af-pipe-stage-sel">
+          <option>Keşfet</option><option>Sunum</option><option>Müzakere</option>
+          <option>Teklif</option><option>Kapandı</option>
+        </select>
+      </div>
+      <button class="btn-primary" style="width:100%" onclick="AfricaModule.addAfricaPipeline()">Afrika Pipeline'a Ekle</button>
+    </div>
+  </div>
+
+  <!-- #10: Mini CRM -->
+  <div class="card" style="margin-bottom:16px">
+    <div class="card-h">
+      <div class="card-icon" style="background:rgba(5,150,105,.08)">👥</div>
+      <h3>Afrika Müşteri CRM</h3>
+    </div>
+    <div id="af-crm-list" style="margin-bottom:10px"></div>
+    <div class="ed-wrap">
+      <div class="ed-title">+ Müşteri Ekle</div>
+      <div class="ed-grid">
+        <span class="ed-lbl">Firma</span><input class="ed-inp" id="crm-name" placeholder="Lagos Trading Co.">
+        <span class="ed-lbl">Ülke</span>
+        <select class="ed-sel" id="crm-country">
+          <option>Nijerya</option><option>Kenya</option><option>Güney Afrika</option>
+          <option>Gana</option><option>Etiyopya</option><option>Senegal</option>
+          <option>Diğer</option>
+        </select>
+        <span class="ed-lbl">Son Temas</span><input class="ed-inp" id="crm-contact" type="date">
+        <span class="ed-lbl">Ödeme</span>
+        <select class="ed-sel" id="crm-payment">
+          <option>Akreditif</option><option>Ön Ödeme</option><option>Açık Hesap</option><option>Sigortalı</option>
+        </select>
+        <span class="ed-lbl">Not</span><input class="ed-inp" id="crm-note" placeholder="Son sipariş: Mart 2026">
+      </div>
+      <button class="btn-primary" style="width:100%" onclick="AfricaModule.addCRM()">CRM'e Ekle</button>
+    </div>
+  </div>
+
+  <!-- #11: Haftalık Rapor -->
+  <div class="card">
+    <div class="card-h">
+      <div class="card-icon" style="background:rgba(124,58,237,.08)">📋</div>
+      <h3>Haftalık Afrika Raporu</h3>
+    </div>
+    <p style="font-size:12px;color:var(--text2);margin-bottom:12px;line-height:1.6">
+      Pipeline durumu, kur hareketleri, kritik haberler ve devlet destek hatırlatmaları — tek PDF olarak indir.
+    </p>
+    <button class="btn-primary" onclick="AfricaModule.generateReport()" style="margin-right:8px">
+      📥 PDF Rapor Oluştur
+    </button>
+    <button class="btn-secondary" onclick="AfricaModule.generateReport('excel')">
+      📊 Excel İndir
+    </button>
+    <div id="af-report-status" style="font-size:11px;color:var(--text3);margin-top:8px"></div>
+  </div>
+</div>
+
+<script type="module" data-module="src/modules/africa.module.js"></script>
