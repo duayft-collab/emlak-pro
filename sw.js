@@ -4,7 +4,7 @@
  * Versiyon: 5.2.0 | 2026-03-26
  */
 
-const CACHE_NAME    = 'strategy-hub-v5.2';
+const CACHE_NAME    = 'strategy-hub-v5.6';
 const STATIC_ASSETS = [
   './',
   './index.html',
@@ -18,6 +18,8 @@ const STATIC_ASSETS = [
   './pages/bizdev.html',
   './pages/growth.html',
   './pages/kids.html',
+  './pages/youtube.html',
+  './pages/prices.html',
   './pages/signals.html',
   './pages/datasources.html',
   './pages/bookmarks.html',
@@ -33,6 +35,7 @@ const STATIC_ASSETS = [
   './src/modules/kids.module.js',
   './src/modules/anayasa.module.js',
   './src/modules/youtube.module.js',
+  './src/modules/prices.module.js',
   './src/modules/signals.module.js',
   './src/modules/data-sources.module.js',
   './src/modules/alarm.module.js',
