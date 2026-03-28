@@ -1948,6 +1948,11 @@ const LABELS = {
   kids:'Çocuk Gelişimi', datasources:'Veri Kaynakları', bookmarks:'Faydalı Siteler', anayasa:'Anayasa v3.0', tools:'İş Araçları'
 };
 
+const BASE = (() => {
+  const p = location.pathname.split('/').filter(Boolean);
+  return p.length > 0 && !p[0].includes('.') ? '/' + p[0] : '';
+})();
+
 function navigate(tabId) {
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
   document.querySelectorAll('.ni[data-tab]').forEach(b=>b.classList.toggle('active',b.dataset.tab===tabId));
