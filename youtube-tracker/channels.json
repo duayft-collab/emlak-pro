@@ -5,10 +5,22 @@
       "channel_id": "UCHExW8VqaE0a3W0kwSe_BXg",
       "url": "https://www.youtube.com/@cihatecicek",
       "category": "Finans & Yatırım"
+    },
+    {
+      "name": "The Rich Dad Channel (Kiyosaki)",
+      "channel_id": "UCuifm5ns5SRG8LZJ6gCfKyw",
+      "url": "https://www.youtube.com/@theRichDadChannel",
+      "category": "Finans & Yatırım"
+    },
+    {
+      "name": "Jeffrey Gitomer",
+      "channel_id": "UCGlhB4HWTBFoWIfHfuRYq6g",
+      "url": "https://www.youtube.com/user/BuyGitomer",
+      "category": "Satış & Pazarlama"
     }
   ],
   "settings": {
     "max_videos_per_run": 5,
-    "lookback_hours": 25
+    "lookback_hours": 48
   }
 }
